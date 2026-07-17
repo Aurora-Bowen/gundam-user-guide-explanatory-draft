@@ -1,3 +1,8 @@
+---
+layout: default
+title: Core Architecture
+description: GUNDAM User Guide Explanatory Documentation
+---
 # Dial System
 
 ## 1. Dial System: Systematic Variations
