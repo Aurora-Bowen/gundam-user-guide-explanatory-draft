@@ -1,3 +1,8 @@
+---
+layout: default
+title: Core Architecture
+description: GUNDAM User Guide Explanatory Documentation
+---
 # Core Architecture
 
 ## 1. Overall Structure of GUNDAM
