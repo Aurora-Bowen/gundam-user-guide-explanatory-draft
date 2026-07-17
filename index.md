@@ -22,7 +22,16 @@ Systematic variations, dial types, dial factories, event-by-event and binned dia
 
 ## Documentation Structure
 
-| Main Section | Main Topics |
-|---|---|
-| **Core Architecture** | Overall workflow, Propagator, Parameters Manager, samples, events, and datasets |
-| **Dial System** | Systematic variations, dial types, factories, spline interpolation, and surface interpolation |
+- **Core Architecture**
+  - Overall Structure of GUNDAM
+  - Propagator
+  - Parameters Manager
+  - Sample and Event Management
+  - Dataset Loading
+
+- **Dial System**
+  - Dial System: Systematic Variations
+  - Dial Types and Definitions
+  - Dial Factories and Tabulated/Kriged Dials
+  - Event-by-Event and Binned Dials
+  - Spline and Surface Interpolation
