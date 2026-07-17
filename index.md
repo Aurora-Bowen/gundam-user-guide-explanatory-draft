@@ -14,11 +14,11 @@ The documentation introduces the roles, relationships, and main behavior of impo
 
 ### 1. [Core Architecture](docs/core-architecture.md)
 
-Overall fitting workflow, Propagator, Parameters Manager, Sample and Event Management, and Dataset Loading.
-
 ### 2. [Dial System](docs/dial-system.md)
 
-Systematic variations, dial types, dial factories, event-by-event and binned dials, and spline and surface interpolation.
+### 3. [Statistical Inference](docs/statistical-inference.md)
+
+### 4. [Applications](docs/applications.md)
 
 ## Documentation Structure
 
