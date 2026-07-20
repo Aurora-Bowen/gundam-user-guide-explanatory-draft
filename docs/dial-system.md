@@ -96,4 +96,4 @@ The configured parameter limits should also be compatible with the available res
 
 ---
 
-[Back to Documentation Overview](../README.md)
+[Back to Documentation Overview]({{ '/' | relative_url }})
