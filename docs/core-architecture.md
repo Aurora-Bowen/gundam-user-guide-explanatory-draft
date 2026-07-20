@@ -67,4 +67,4 @@ Because later stages depend on the loaded events, the dataset configuration must
 
 ---
 
-[Back to Documentation Overview](../README.md)
+[Back to Documentation Overview]({{ '/' | relative_url }})
