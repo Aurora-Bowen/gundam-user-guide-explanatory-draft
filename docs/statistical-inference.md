@@ -10,7 +10,7 @@ description: GUNDAM User Guide Explanatory Documentation
 
 GUNDAM statistical inference connects the fit parameters to the model prediction and evaluates how well that prediction describes the selected data. During a fit, the numerical minimizer or MCMC sampler proposes a parameter point. GUNDAM then updates the Monte Carlo prediction, compares it with the data, adds the parameter constraints, and returns a single objective value.
 
-In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates a test statistic that generally follows a **−2 log L-like convention** for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
+In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates a test statistic that generally follows a **\(-2\log L\)-like convention** for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
 
 A typical evaluation follows this sequence:
 
@@ -30,9 +30,13 @@ During ordinary minimization or sampling, the **model prediction** changes at ea
 
 The total objective contains a statistical contribution and a parameter-penalty contribution:
 
-```text
-Q_total = Q_stat + Q_penalty
-```
+$$
+Q_{\text{total}}
+=
+Q_{\text{stat}}
++
+Q_{\text{penalty}}
+$$
 
 The **statistical contribution** measures the agreement between the predicted and observed histogram contents. The **penalty contribution** represents prior constraints on the fit parameters.
 
@@ -48,25 +52,52 @@ The comparison is controlled by the configured **joint-probability model**. The 
 
 For the Poisson model, the bin contribution is
 
-```text
-Q_Poisson = 2 × [N_pred − N_data + N_data × ln(N_data / N_pred)]
-```
+$$
+Q_{\text{Poisson}}
+=
+2\left[
+N_{\text{pred}}
+-
+N_{\text{data}}
++
+N_{\text{data}}
+\ln\left(
+\frac{N_{\text{data}}}{N_{\text{pred}}}
+\right)
+\right]
+$$
 
 For the Pearson chi-squared model,
 
-```text
-Q_Chi2 = (N_pred − N_data)^2 / N_pred
-```
+$$
+Q_{\chi^2}
+=
+\frac{
+\left(
+N_{\text{pred}}-N_{\text{data}}
+\right)^2
+}{
+N_{\text{pred}}
+}
+$$
 
 GUNDAM provides several **Barlow-Beeston variants**. These implementations account for finite Monte Carlo statistics, but they do not all use identical approximations or numerical treatments. Users should select the implementation required by the validated configuration of their analysis rather than assuming that the variants are interchangeable.
 
 Parameters with Gaussian prior constraints contribute a penalty when they move away from their prior values. For correlated parameters, the penalty has the form
 
-```text
-Q_penalty = (p − p0)^T × V^−1 × (p − p0)
-```
+$$
+Q_{\text{penalty}}
+=
+\left(
+\mathbf{p}-\mathbf{p}_0
+\right)^T
+V^{-1}
+\left(
+\mathbf{p}-\mathbf{p}_0
+\right)
+$$
 
-Here, **p** is the current parameter vector, **p0** contains the prior values, and **V** is the prior covariance matrix. Flat-prior parameters do not contribute this Gaussian penalty.
+Here, \(\mathbf{p}\) is the current parameter vector, \(\mathbf{p}_0\) contains the prior values, and \(V\) is the prior covariance matrix. Flat-prior parameters do not contribute this Gaussian penalty.
 
 Parameter limits and prior uncertainties serve different purposes. A parameter may remain inside its allowed range while still receiving a large penalty because it is far from its prior value.
 
@@ -92,7 +123,7 @@ GUNDAM supports two main inference strategies: **numerical minimization** and **
 
 ### Numerical Minimization
 
-`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective. A typical configuration uses **Minuit2** with the **Migrad** algorithm.
+`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective \(Q_{\text{total}}\). A typical configuration uses **Minuit2** with the **Migrad** algorithm.
 
 The minimization workflow may also include:
 
@@ -108,9 +139,12 @@ The ROOT-based workflow can provide best-fit parameter values, fit-status inform
 
 `SimpleMcmc` samples the parameter distribution instead of only locating one minimum. It converts the GUNDAM objective into a log probability according to
 
-```text
-log P = −Q_total / 2
-```
+$$
+\log P
+=
+-\frac{1}{2}
+Q_{\text{total}}
+$$
 
 Because the parameter penalty is already included in the total objective, the prior constraints automatically contribute to the sampled probability.
 
