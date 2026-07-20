@@ -10,7 +10,7 @@ description: GUNDAM User Guide Explanatory Documentation
 
 GUNDAM statistical inference connects the fit parameters to the model prediction and evaluates how well that prediction describes the selected data. During a fit, the numerical minimizer or MCMC sampler proposes a parameter point. GUNDAM then updates the Monte Carlo prediction, compares it with the data, adds the parameter constraints, and returns a single objective value.
 
-In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates a test statistic that generally follows a **\(-2\log L\)-like convention** for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
+In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates a test statistic that generally follows a $$-2\log L$$-like convention for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
 
 A typical evaluation follows this sequence:
 
@@ -97,7 +97,7 @@ V^{-1}
 \right)
 $$
 
-Here, \(\mathbf{p}\) is the current parameter vector, \(\mathbf{p}_0\) contains the prior values, and \(V\) is the prior covariance matrix. Flat-prior parameters do not contribute this Gaussian penalty.
+Here, $$\mathbf{p}$$ is the current parameter vector, $$\mathbf{p}_0$$ contains the prior values, and $$V$$ is the prior covariance matrix. Flat-prior parameters do not contribute this Gaussian penalty.
 
 Parameter limits and prior uncertainties serve different purposes. A parameter may remain inside its allowed range while still receiving a large penalty because it is far from its prior value.
 
@@ -123,7 +123,7 @@ GUNDAM supports two main inference strategies: **numerical minimization** and **
 
 ### Numerical Minimization
 
-`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective \(Q_{\text{total}}\). A typical configuration uses **Minuit2** with the **Migrad** algorithm.
+`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective $$Q_{\text{total}}$$. A typical configuration uses **Minuit2** with the **Migrad** algorithm.
 
 The minimization workflow may also include:
 
