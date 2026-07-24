@@ -3,9 +3,9 @@ layout: default
 title: Core Architecture
 description: GUNDAM User Guide Explanatory Documentation
 ---
-# Core Architecture
+# Overall Structure of GUNDAM
 
-## 1. Overall Structure of GUNDAM
+## 
 
 GUNDAM is a configuration-driven fitting framework. A fit is mainly defined through YAML or JSON configuration files, while the input events are usually read from ROOT files. The configuration specifies which datasets are loaded, how events are selected and grouped into analysis samples, which parameters are allowed to vary, how systematic effects are applied to the Monte Carlo prediction, and how the prediction is compared with data.
 
@@ -19,7 +19,7 @@ The main components discussed below are the Propagator, the Parameters Manager, 
 
 ---
 
-## 2. Propagator
+## Propagator
 
 The Propagator applies the current fit parameter values to the Monte Carlo prediction. It is the main component that connects the parameter configuration to the samples and histograms used in the likelihood calculation.
 
@@ -31,7 +31,7 @@ After the Propagator updates the prediction histograms, those histograms are pas
 
 ---
 
-## 3. Parameters Manager
+## Parameters Manager
 
 The Parameters Manager defines and organizes the quantities that can vary during the fit. GUNDAM does not assign a fixed physical meaning to these parameters. Depending on the analysis, they may represent normalization factors, oscillation parameters, or systematic effects associated with the neutrino flux, interaction cross sections, and detector response. Other model parameters can also be included when they are defined and connected to the prediction in the analysis configuration.
 
@@ -43,7 +43,7 @@ A clear parameter configuration is important because it defines the parameter sp
 
 ---
 
-## 4. Sample and Event Management
+##  Sample and Event Management
 
 Sample and Event Management defines how loaded events are organized into analysis samples. A sample usually corresponds to an analysis channel, such as a beam mode, flavor category, event topology, signal region, background region, or control sample.
 
@@ -55,7 +55,7 @@ During the fit, Monte Carlo events remain associated with their configured sampl
 
 ---
 
-## 5. Dataset Loading
+##  Dataset Loading
 
 Dataset Loading defines where the input events come from and how GUNDAM should read them. In most analyses, the events are stored in ROOT TTrees or TChains. The dataset configuration specifies the input ROOT files, the tree name, the nominal event weight, and the variables or branch mappings needed later for selections, weights, binning, and systematic variations.
 
