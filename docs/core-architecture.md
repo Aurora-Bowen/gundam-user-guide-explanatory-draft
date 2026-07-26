@@ -5,7 +5,7 @@ description: GUNDAM User Guide Explanatory Documentation
 ---
 # Overall Structure of GUNDAM
 
-## 
+
 
 GUNDAM is a configuration-driven fitting framework. A fit is mainly defined through YAML or JSON configuration files, while the input events are usually read from ROOT files. The configuration specifies which datasets are loaded, how events are selected and grouped into analysis samples, which parameters are allowed to vary, how systematic effects are applied to the Monte Carlo prediction, and how the prediction is compared with data.
 
