@@ -32,7 +32,7 @@ The side branches show related inputs, configuration choices, methods, tools, or
     <img
       src="{{ '/assets/images/gundam-core-architecture.png' | relative_url }}"
       alt="GUNDAM Core Architecture workflow diagram"
-      width="760"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
@@ -50,7 +50,7 @@ The diagram summarizes how configuration, datasets, samples, parameters, propaga
     <img
       src="{{ '/assets/images/gundam-dial-system.png' | relative_url }}"
       alt="GUNDAM Dial System workflow diagram"
-      width="760"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
@@ -68,7 +68,7 @@ The diagram shows how parameter changes are translated into dial responses, even
     <img
       src="{{ '/assets/images/gundam-statistical-inference.png' | relative_url }}"
       alt="GUNDAM Statistical Inference workflow diagram"
-      width="760"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
@@ -86,12 +86,11 @@ The diagram summarizes the repeated objective-evaluation workflow and the differ
     <img
       src="{{ '/assets/images/gundam-applications.png' | relative_url }}"
       alt="GUNDAM Applications workflow diagram"
-      width="760"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
 
 The diagram organizes the main applications, configuration tools, output components, inspection utilities, and optional interfaces.
 
-[Read the Applications page →]({{ '/docs/applications.html' | relative_url }}) 
-
+[Read the Applications page →]({{ '/docs/applications.html' | relative_url }})
