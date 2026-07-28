@@ -91,13 +91,15 @@ The general spline implementation supports non-uniform knot spacing. Each knot p
 The compact spline implementation uses a Catmull-Rom spline. Instead of requiring slopes to be supplied separately, it derives the local interpolation behavior from neighboring response values. This reduces the amount of stored information while still providing a smooth cubic response between uniformly spaced knots.
 
 <p align="center">
-  <a href="{{ '/assets/images/DialType_Compact_explot.png' | relative_url }}">
-    <img
-      src="{{ '/assets/images/DialType_Compact_explot.png' | relative_url }}"
-      alt="Compact spline interpolation and extrapolation"
-      style="width: 100%; max-width: 580px; height: auto;"
-    >
-  </a>
+  <img
+    src="https://aurora-bowen.github.io/gundam-user-guide-explanatory-draft/assets/images/DialType_Compact_explot.png"
+    alt="Compact spline interpolation and extrapolation"
+    style="width: 100%; max-width: 580px; height: auto;"
+  >
+</p>
+
+<p align="center">
+  <em>Figure: Compact spline interpolation and extrapolation.</em>
 </p>
 
 ### Monotonic Spline
