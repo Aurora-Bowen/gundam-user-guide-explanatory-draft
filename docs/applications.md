@@ -9,7 +9,7 @@ description: User-Facing Applications and Utilities in GUNDAM
     <img
       src="{{ '/assets/images/gundam-applications.png' | relative_url }}"
       alt="GUNDAM Applications workflow diagram"
-      style="width: 100%; max-width: 760px; height: auto;"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
