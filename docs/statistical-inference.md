@@ -10,7 +10,7 @@ description: GUNDAM User Guide Explanatory Documentation
 
 GUNDAM statistical inference connects the fit parameters to the model prediction and evaluates how well that prediction describes the selected data. During a fit, the numerical minimizer or MCMC sampler proposes a parameter point. GUNDAM then updates the Monte Carlo prediction, compares it with the data, adds the parameter constraints, and returns a single objective value.
 
-In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates a test statistic that generally follows a $$-2\log L$$-like convention for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
+In the code and output, this quantity is often called the **likelihood** or **LLH**. More precisely, GUNDAM evaluates an objective that generally follows a $-2\log\mathcal{L}$ convention for the standard likelihood choices. A numerical minimizer searches for the parameter point that gives the smallest value, while MCMC converts the same quantity into a probability for sampling.
 
 A typical evaluation follows this sequence:
 
@@ -19,7 +19,7 @@ A typical evaluation follows this sequence:
 3. The affected Monte Carlo events are reweighted.
 4. The prediction histograms are rebuilt.
 5. The prediction is compared with the data.
-6. The statistical and parameter-penalty contributions are added.
+6. The statistical and parameter-constraint contributions are added.
 7. The total objective is returned to the minimizer or sampler.
 
 During ordinary minimization or sampling, the **model prediction** changes at each tested point, while the prepared **data histograms** normally remain fixed.
@@ -28,17 +28,11 @@ During ordinary minimization or sampling, the **model prediction** changes at ea
 
 ## 2. Objective Function
 
-The total objective contains a statistical contribution and a parameter-penalty contribution:
+The total negative log-likelihood contains a statistical contribution and a systematic-constraint contribution:
 
-$$
-Q_{\text{total}}
-=
-Q_{\text{stat}}
-+
-Q_{\text{penalty}}
-$$
+$$-2\log\mathcal{L}_{\text{total}}=-2\log\mathcal{L}_{\text{stat}}-2\log\mathcal{L}_{\text{syst}}$$
 
-The **statistical contribution** measures the agreement between the predicted and observed histogram contents. The **penalty contribution** represents prior constraints on the fit parameters.
+The **statistical contribution** measures the agreement between the predicted and observed histogram contents. The **systematic contribution** represents prior constraints on the fit parameters.
 
 For each configured sample, GUNDAM compares the model and data histograms bin by bin. The contributions from all samples and bins are added to form the total statistical term.
 
@@ -50,54 +44,21 @@ The comparison is controlled by the configured **joint-probability model**. The 
 - **BarlowLLH variants**, which include the statistical uncertainty of the Monte Carlo prediction.
 - **Plugin**, which allows a user-provided statistical evaluation function.
 
-For the Poisson model, the bin contribution is
+For the Poisson model, the bin contribution to the statistical negative log-likelihood ratio is
 
-$$
-Q_{\text{Poisson}}
-=
-2\left[
-N_{\text{pred}}
--
-N_{\text{data}}
-+
-N_{\text{data}}
-\ln\left(
-\frac{N_{\text{data}}}{N_{\text{pred}}}
-\right)
-\right]
-$$
+$$-2\log\mathcal{L}_{\text{Poisson}}=2\left[N_{\text{pred}}-N_{\text{data}}+N_{\text{data}}\ln\left(\frac{N_{\text{data}}}{N_{\text{pred}}}\right)\right]$$
 
 For the Pearson chi-squared model,
 
-$$
-Q_{\chi^2}
-=
-\frac{
-\left(
-N_{\text{pred}}-N_{\text{data}}
-\right)^2
-}{
-N_{\text{pred}}
-}
-$$
+$$\chi^2_{\text{Pearson}}=\frac{\left(N_{\text{pred}}-N_{\text{data}}\right)^2}{N_{\text{pred}}}$$
 
 GUNDAM provides several **Barlow-Beeston variants**. These implementations account for finite Monte Carlo statistics, but they do not all use identical approximations or numerical treatments. Users should select the implementation required by the validated configuration of their analysis rather than assuming that the variants are interchangeable.
 
-Parameters with Gaussian prior constraints contribute a penalty when they move away from their prior values. For correlated parameters, the penalty has the form
+Parameters with Gaussian prior constraints contribute a penalty when they move away from their prior values. For correlated parameters, the systematic-constraint contribution has the form
 
-$$
-Q_{\text{penalty}}
-=
-\left(
-\mathbf{p}-\mathbf{p}_0
-\right)^T
-V^{-1}
-\left(
-\mathbf{p}-\mathbf{p}_0
-\right)
-$$
+$$-2\log\mathcal{L}_{\text{syst}}=\left(\mathbf{p}-\mathbf{p}_0\right)^T V^{-1}\left(\mathbf{p}-\mathbf{p}_0\right)$$
 
-Here, $$\mathbf{p}$$ is the current parameter vector, $$\mathbf{p}_0$$ contains the prior values, and $$V$$ is the prior covariance matrix. Flat-prior parameters do not contribute this Gaussian penalty.
+Here, $\mathbf{p}$ is the current parameter vector, $\mathbf{p}_0$ contains the prior values, and $V$ is the prior covariance matrix. Flat-prior parameters do not contribute to this Gaussian constraint term.
 
 Parameter limits and prior uncertainties serve different purposes. A parameter may remain inside its allowed range while still receiving a large penalty because it is far from its prior value.
 
@@ -111,7 +72,7 @@ The **FitterEngine** organizes the overall inference procedure. It initializes t
 
 The **Propagator** applies the current parameter values to the Monte Carlo prediction. It updates the relevant dials, recalculates event weights, and rebuilds the predicted histograms. Its role is to produce the updated model prediction; it does not calculate the total likelihood by itself.
 
-The **Likelihood Interface** compares the updated prediction with the data, evaluates the parameter penalty, combines the two contributions, and returns the total objective to the inference method.
+The **Likelihood Interface** compares the updated prediction with the data, evaluates the parameter constraints, combines the statistical and systematic contributions, and returns the total objective to the inference method.
 
 The model and data are handled separately. Depending on the analysis configuration, the data side may contain **real data**, an **Asimov dataset**, or a **toy dataset**. Once the data histograms have been prepared, they normally remain unchanged while the model prediction is repeatedly updated during the fit.
 
@@ -123,7 +84,7 @@ GUNDAM supports two main inference strategies: **numerical minimization** and **
 
 ### Numerical Minimization
 
-`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective $$Q_{\text{total}}$$. A typical configuration uses **Minuit2** with the **Migrad** algorithm.
+`RootMinimizer` uses the ROOT minimization framework to search for the parameter point that minimizes the total objective $-2\log\mathcal{L}_{\text{total}}$. A typical configuration uses **Minuit2** with the **Migrad** algorithm.
 
 The minimization workflow may also include:
 
@@ -139,14 +100,9 @@ The ROOT-based workflow can provide best-fit parameter values, fit-status inform
 
 `SimpleMcmc` samples the parameter distribution instead of only locating one minimum. It converts the GUNDAM objective into a log probability according to
 
-$$
-\log P
-=
--\frac{1}{2}
-Q_{\text{total}}
-$$
+$$\log P=-\frac{1}{2}\left[-2\log\mathcal{L}_{\text{total}}\right]$$
 
-Because the parameter penalty is already included in the total objective, the prior constraints automatically contribute to the sampled probability.
+Because the systematic-constraint contribution is already included in the total objective, the prior constraints automatically contribute to the sampled probability.
 
 The MCMC configuration controls the burn-in, the number of sampling cycles and steps, the proposal strategy, and the proposal covariance. The main result is a Markov chain of sampled parameter points. Posterior intervals, correlations, and other summaries are obtained by analyzing the saved chain.
 
@@ -162,14 +118,14 @@ The **Parameter Scanner** evaluates the objective while varying a selected param
 
 In a standard one-parameter scan, the other parameters remain fixed. These curves are therefore **fixed-parameter scans**, not profile-likelihood scans. A profile-likelihood scan would require the remaining nuisance parameters to be re-minimized at every scan point.
 
-Parameter scans may be performed before or after the fit and can record the total objective, the statistical contribution, the parameter penalty, and optional sample-level or bin-level quantities.
+Parameter scans may be performed before or after the fit and can record the total objective, the statistical contribution, the systematic-constraint contribution, and optional sample-level or bin-level quantities.
 
 For ROOT minimization, **Hesse** or **Minos** may be used after a successful fit to estimate parameter uncertainties. For MCMC, uncertainty information is instead obtained from the sampled parameter distribution.
 
 Depending on the configuration, a GUNDAM inference run may save:
 
 - pre-fit and post-fit parameter values;
-- total, statistical, and penalty objective values;
+- total, statistical, and systematic negative log-likelihood values;
 - pre-fit and post-fit model histograms;
 - covariance and correlation matrices;
 - parameter-scan graphs;
