@@ -11,7 +11,7 @@ description: GUNDAM User Guide Explanatory Documentation
     <img
       src="{{ '/assets/images/gundam-statistical-inference.png' | relative_url }}"
       alt="GUNDAM Statistical Inference workflow diagram"
-      style="width: 100%; max-width: 760px; height: auto;"
+      style="width: 100%; max-width: 580px; height: auto;"
     >
   </a>
 </p>
