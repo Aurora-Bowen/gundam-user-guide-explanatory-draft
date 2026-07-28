@@ -3,7 +3,7 @@ layout: default
 title: Core Architecture
 description: GUNDAM User Guide Explanatory Documentation
 ---
-# 1.Overall Structure of GUNDAM
+# 1. Overall Structure of GUNDAM
 
 <p align="center">
   <a href="{{ '/assets/images/gundam-core-architecture_overview.png' | relative_url }}">
@@ -29,7 +29,7 @@ The main components discussed below are the Propagator, the Parameters Manager, 
 
 ---
 
-## 2.Propagator
+## 2. Propagator
 
 <p align="center">
   <a href="{{ '/assets/images/gundam-core-architecture_propagator.png' | relative_url }}">
@@ -53,7 +53,7 @@ After the Propagator updates the prediction histograms, those histograms are pas
 
 ---
 
-## 3.Parameters Manager
+## 3. Parameters Manager
 
 The Parameters Manager defines and organizes the quantities that can vary during the fit. GUNDAM does not assign a fixed physical meaning to these parameters. Depending on the analysis, they may represent normalization factors, oscillation parameters, or systematic effects associated with the neutrino flux, interaction cross sections, and detector response. Other model parameters can also be included when they are defined and connected to the prediction in the analysis configuration.
 
@@ -65,7 +65,7 @@ A clear parameter configuration is important because it defines the parameter sp
 
 ---
 
-##  4.Sample and Event Management
+##  4. Sample and Event Management
 
 Sample and Event Management defines how loaded events are organized into analysis samples. A sample usually corresponds to an analysis channel, such as a beam mode, flavor category, event topology, signal region, background region, or control sample.
 
@@ -77,7 +77,7 @@ During the fit, Monte Carlo events remain associated with their configured sampl
 
 ---
 
-##  5.Dataset Loading
+##  5. Dataset Loading
 
 Dataset Loading defines where the input events come from and how GUNDAM should read them. In most analyses, the events are stored in ROOT TTrees or TChains. The dataset configuration specifies the input ROOT files, the tree name, the nominal event weight, and the variables or branch mappings needed later for selections, weights, binning, and systematic variations.
 
