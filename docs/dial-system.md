@@ -90,6 +90,8 @@ The general spline implementation supports non-uniform knot spacing. Each knot p
 
 The compact spline implementation uses a Catmull-Rom spline. Instead of requiring slopes to be supplied separately, it derives the local interpolation behavior from neighboring response values. This reduces the amount of stored information while still providing a smooth cubic response between uniformly spaced knots.
 
+![Compact spline interpolation and extrapolation](DialType_Compact_explot.png)
+
 ### Monotonic Spline
 
 The monotonic spline implementation applies the Fritsch-Carlson condition when determining the slopes at the knots. If the supplied response values are monotonic, the slopes are adjusted to preserve that behavior between neighboring knots. This prevents cubic interpolation from introducing overshooting or artificial oscillations into the systematic response.
