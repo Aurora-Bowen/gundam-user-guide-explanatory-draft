@@ -4,11 +4,11 @@ title: GUNDAM User Guide
 description: Draft Explanatory Documentation
 ---
 
-# Documentation Overview
+# Overview of the Software
 
-This website contains draft explanatory documentation for the GUNDAM User Guide.
+GUNDAM, standing for Generalized and Unified Neutrino Data Analysis Methods, is a suite of applications which aims at performing various statistical analysis with different purposes and setups. It has been developed as a fork of xsllhFitter, in the context of the Upgrade of ND280 for the T2K neutrino experiment.
 
-The documentation introduces the roles, relationships, and main behavior of important GUNDAM components without focusing on detailed implementation.
+The applications are intended to be fully configurable with a set of YAML/JSON files, as the philosophy of this project is to avoid users having to put their hands into the code for each study. A lot of time and efforts are usually invested by various working groups to debug and optimize pieces of codes which does generic tasks. As GUNDAM is designed for maximize flexibility to accommodate various physics works, it allows to share optimizations and debugging for every project at once.
 
 ## Documentation Pages
 
