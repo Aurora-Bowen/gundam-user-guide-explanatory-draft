@@ -14,16 +14,9 @@ The applications are intended to be fully configurable with a set of YAML/JSON f
 
 ### 1. [Core Architecture]({{ '/docs/core-architecture.html' | relative_url }})
 
-An overview of how configuration, datasets, samples, parameters, propagation, likelihood evaluation, and statistical inference are connected.
-
 ### 2. [Dial System]({{ '/docs/dial-system.html' | relative_url }})
-
-An explanation of how fit parameters are translated into dial responses, event-weight updates, and modified Monte Carlo predictions.
 
 ### 3. [Statistical Inference]({{ '/docs/statistical-inference.html' | relative_url }})
 
-A summary of likelihood evaluation, parameter constraints, numerical minimization, MCMC sampling, diagnostics, and fit outputs.
-
 ### 4. [Applications]({{ '/docs/applications.html' | relative_url }})
 
-An introduction to the main GUNDAM applications, configuration utilities, output tools, inspection programs, and optional interfaces.
