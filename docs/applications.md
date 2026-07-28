@@ -4,6 +4,20 @@ title: Applications
 description: User-Facing Applications and Utilities in GUNDAM
 ---
 
+<p align="center">
+  <a href="{{ '/assets/images/gundam-applications.png' | relative_url }}">
+    <img
+      src="{{ '/assets/images/gundam-applications.png' | relative_url }}"
+      alt="GUNDAM Applications workflow diagram"
+      style="width: 100%; max-width: 760px; height: auto;"
+    >
+  </a>
+</p>
+
+*Figure: Overview of the main GUNDAM applications, utilities, outputs, and optional interfaces.*
+
+---
+
 ## 1. Applications Overview
 
 The Applications layer provides the main user-facing entry points to GUNDAM. It includes the primary programs used to run fits or propagate fit results, a set of utility applications for configuration handling and result inspection, internal output components for histograms and event trees, and an optional Python interface.
