@@ -92,7 +92,7 @@ The compact spline implementation uses a Catmull-Rom spline. Instead of requirin
 
 <p align="center">
   <img
-    src="https://aurora-bowen.github.io/gundam-user-guide-explanatory-draft/assets/images/DialType_Compact_explot.png"
+    src="../assets/images/DialType_Compact_explot.png"
     alt="Compact spline interpolation and extrapolation"
     style="width: 100%; max-width: 580px; height: auto;"
   >
