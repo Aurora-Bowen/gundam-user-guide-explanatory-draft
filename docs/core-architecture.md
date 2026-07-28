@@ -5,7 +5,17 @@ description: GUNDAM User Guide Explanatory Documentation
 ---
 # Overall Structure of GUNDAM
 
+<p align="center">
+  <a href="{{ '/assets/images/gundam-core-architecture_overview.png' | relative_url }}">
+    <img
+      src="{{ '/assets/images/gundam-core-architecture_overview.png' | relative_url }}"
+      alt="GUNDAM Overall Core Architecture diagram"
+      style="width: 100%; max-width: 1100px; height: auto;"
+    >
+  </a>
+</p>
 
+*Figure: High-level organization of the GUNDAM fitting framework and its repeated model-evaluation loop.*
 
 GUNDAM is a configuration-driven fitting framework. A fit is mainly defined through YAML or JSON configuration files, while the input events are usually read from ROOT files. The configuration specifies which datasets are loaded, how events are selected and grouped into analysis samples, which parameters are allowed to vary, how systematic effects are applied to the Monte Carlo prediction, and how the prediction is compared with data.
 
@@ -20,6 +30,18 @@ The main components discussed below are the Propagator, the Parameters Manager, 
 ---
 
 ## Propagator
+
+<p align="center">
+  <a href="{{ '/assets/images/gundam-core-architecture_propagator.png' | relative_url }}">
+    <img
+      src="{{ '/assets/images/gundam-core-architecture_propagator.png' | relative_url }}"
+      alt="GUNDAM Propagator-centered architecture diagram"
+      style="width: 100%; max-width: 1100px; height: auto;"
+    >
+  </a>
+</p>
+
+*Figure: Propagator-centered view of parameter updates, dial responses, event reweighting, and histogram refill.*
 
 The Propagator applies the current fit parameter values to the Monte Carlo prediction. It is the main component that connects the parameter configuration to the samples and histograms used in the likelihood calculation.
 
