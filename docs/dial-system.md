@@ -4,6 +4,20 @@ title: Dial System
 description: Systematic Variations in GUNDAM
 ---
 
+<p align="center">
+  <a href="{{ '/assets/images/gundam-dial-system.png' | relative_url }}">
+    <img
+      src="{{ '/assets/images/gundam-dial-system.png' | relative_url }}"
+      alt="GUNDAM Dial System workflow diagram"
+      style="width: 100%; max-width: 1100px; height: auto;"
+    >
+  </a>
+</p>
+
+*Figure: Overview of how parameter variations are translated into dial responses, event-weight updates, and modified Monte Carlo predictions.*
+
+---
+
 ## 1. Dial System: Systematic Variations
 
 A **Dial** represents a response function that modifies an event's weight based on the state of one or more model parameters. The Dial System translates changes in fit parameters into changes in the Monte Carlo prediction. In this way, the Dial System connects the parameter space explored by the fitter or sampler to the event weights used by the Propagator.
