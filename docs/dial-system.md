@@ -9,7 +9,7 @@ description: Systematic Variations in GUNDAM
     <img
       src="{{ '/assets/images/gundam-dial-system.png' | relative_url }}"
       alt="GUNDAM Dial System workflow diagram"
-      style="width: 100%; max-width: 1100px; height: auto;"
+      style="width: 100%; max-width: 760px; height: auto;"
     >
   </a>
 </p>
