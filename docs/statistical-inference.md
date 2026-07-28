@@ -6,6 +6,20 @@ description: GUNDAM User Guide Explanatory Documentation
 
 # Statistical Inference
 
+<p align="center">
+  <a href="{{ '/assets/images/gundam-statistical-inference.png' | relative_url }}">
+    <img
+      src="{{ '/assets/images/gundam-statistical-inference.png' | relative_url }}"
+      alt="GUNDAM Statistical Inference workflow diagram"
+      style="width: 100%; max-width: 760px; height: auto;"
+    >
+  </a>
+</p>
+
+*Figure: Overview of likelihood evaluation, parameter constraints, inference methods, and statistical outputs in GUNDAM.*
+
+---
+
 ## 1. Overall Statistical Inference Workflow
 
 GUNDAM statistical inference connects the fit parameters to the model prediction and evaluates how well that prediction describes the selected data. During a fit, the numerical minimizer or MCMC sampler proposes a parameter point. GUNDAM then updates the Monte Carlo prediction, compares it with the data, adds the parameter constraints, and returns a single objective value.
